@@ -35,7 +35,7 @@ func (self *DHGroup) GeneratePrivateKey(randReader io.Reader) (key *DHKey, err e
 	}
 	var zero *big.Int = big.NewInt(0)
 	var x *big.Int = zero
-	for x == zero {
+	for x.Cmp(zero) == 0 {
 		x, err = rand.Int(randReader, self.p)
 		if err != nil {
 			return
